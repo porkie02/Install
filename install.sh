@@ -36,6 +36,16 @@ We don't want to make money or an big ego, so go away or hate me ^^
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 EOF
 sleep 3
+#check it is being run as root
+if [ "$(id -u)" != "0" ]; then
+  	echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+	echo ""
+	echo " ⛔ Warning! "
+	echo " ⛔ Warning! insufficient permission "
+	echo " ⛔ Warning! "
+	echo ""
+	echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" && exit 1
+fi
 ##check for open port ( apache and Nginx test )
 apt-get install lsof -yqq 2>&1 >> /dev/null
 	export DEBIAN_FRONTEND=noninteractive
